@@ -66,4 +66,4 @@ test_str2 = 'this is test2'
 print(test_str1 + test_str2)
 # join的用法和js相反，前边的才是链接的字符，后边要看做是一个list；
 # 输出t+h+i+s+ +i+s+ +t+e+s+t+2
-print('+'.join(test_str2))
+print('+'.join(test_str2)) # 神奇的是，各类语言对同一种类型的变量的方法命名相似，但是使用方法却截然不同
