@@ -101,3 +101,32 @@ print(str.index('一个'))
 
 # 3. count，检测字符串中某个字段出现的次数
 print(str.count('一', 1, 5)) #可以加入索引值
+
+# 4. replace(str1, str2, count)，将字符串的str1字符串内容替换为str2字符串，count表示替换几次，不给值的话则代表全替换
+str = '挖呀挖呀挖'
+print(str.replace('挖', '123'))
+
+# 5. split，分割字段，返回字符串数组，当不传入内容的时候，则认为是按照空格拆分
+print('123   12'.split())
+
+# 6. startwith和endwith，标识字符串是否以。。。开始或结尾
+print('123'.startswith('1'))
+
+# 7. lower和upper，将字符串内容转换成大写或者小写
+print('aDcadfF'.upper())
+
+# 8. strip、lstrip、rstrip，去除字符串两边的空格
+str = ' 1231231 '
+print(str.strip()) 
+
+# 9. join，在字符串中间插入某个字符，长用于数组上
+print('++'.join(['1','2','3','4']))
+
+# 10. isalpha、isdigit，判断字符串是否完全是字母或者数字
+print('123123'.isdigit())
+
+"""
+    九、字符串中需要注意的地方
+        1. 字符串的本质是字符串序列，和c#一样，是引用类型，有不可变性和驻留性；
+        2. Python不支持单字符，即char类型，单字符也是被看做单个字符的字符串；
+"""
