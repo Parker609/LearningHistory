@@ -48,3 +48,18 @@ for i in dic.values():
 
 # 5. 获取字典长度
 print(len(dic))
+
+"""
+    三、字典中添加元素
+        1. 键值对覆盖
+        2. 用updata合并两个dic
+"""
+
+# 1. 通过键值对来赋值
+dic['height'] = 123
+print(dic['height'])
+
+# 2. 通过updata
+temp_dic = {'name': 'zs', 'age': 13}
+dic.update(temp_dic)
+print(dic['age'])
