@@ -63,3 +63,47 @@ print(dic['height'])
 temp_dic = {'name': 'zs', 'age': 13}
 dic.update(temp_dic)
 print(dic['age'])
+
+"""
+    四、删除字典中的某个元素
+        1. del方法；删除某一个
+        2. clear方法；清空字典
+        3. pop方法，删除某个键，返回某个值；
+        4. popitem，删除最后一个值，但是在3.7版本之前是删除某个随机值；
+"""
+
+temp_dic = {'name': 'zs', 'age': 13, 'height': 180, 'grade': 3}
+
+# 1. del方法
+del(temp_dic['age'])
+print(temp_dic)
+
+# 2. pop方法，没有对应的key则会报错
+pop_member = temp_dic.pop('name')
+print(pop_member)
+print(temp_dic)
+
+# 3. popitem方法，吐最后一个值，（字典还有顺序么）
+temp_dic = {'name': 'zs', 'age': 13, 'height': 180, 'grade': 3}
+pop_member = temp_dic.popitem() # 没有参数
+print(pop_member)
+print(temp_dic)
+
+# 4. 清空整个列表，一般情况下直接 = {} 这样其实用起来更方便；不过如果这块有传址的操作，想清空所有，还是要用clear；
+temp_dic2 = temp_dic
+temp_dic.popitem()
+print(temp_dic)
+print(temp_dic2)
+temp_dic.clear()
+print(temp_dic)
+print(temp_dic2)
+
+"""
+    五、序列解包，解构赋值。
+        1. 其实这块是用到的列表的解构赋值，a,b,c = [1,2,3]， 会将123复制给abc，这块的字典没有解构操作
+"""
+temp_dic = {'name': 'zs', 'age': 13, 'height': 180, 'grade': 3}
+print(temp_dic.keys())
+a,b,c,d = temp_dic.keys() # 这块不能有空格，这样用对格式要求太高了，还是用普通的取值方法就行；
+print(a)
+
