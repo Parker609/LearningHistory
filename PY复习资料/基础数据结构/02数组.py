@@ -233,3 +233,23 @@ print(id(temp_tup))
 print((1, 2, 3) == (1, 2, 3))
 
 # Python中的==等号应用，这块说的都是对比值，并不是直接地址对比；
+
+"""
+    PS、元组也支持索引切片、遍历
+"""
+# 1. 切片
+temp_tup = (1, 2, 3, 5, 6)
+print(temp_tup[3::-1])
+
+# 2. 遍历
+for i in temp_tup:
+    print(i)
+
+# 3. 支持count和index方法，用于
+print(temp_tup.count(1))
+print(temp_tup.index(3))
+
+"""
+    PS、元组存在的意义
+        元组作为一个不可变序列，是保证数组在程序运行过程中，不会由于各种原因修改了数据，可以保证数据的完整性；
+"""
