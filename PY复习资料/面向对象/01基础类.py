@@ -42,6 +42,9 @@ class Ani:
     name = 'name'
     # 私有属性
     __age = 18
+    # 私有方法，外界不能调用，只能是内部自己调用；
+    def __say_hello(self):
+        print("say hello")
     # 静态属性：通过getter和setter把私有属性保护起来了
     @property
     def age(self):
@@ -68,7 +71,7 @@ class Ani:
 ani = Ani()
 print(ani.name)
 # print(ani.__age) # 'Ani' object has no attribute '__age' 报错
-
+# ani.__say_hello() # 'Ani' object has no attribute '__say_hello' 报错
 ani.age = 21
 age = ani.age # 获取age的时候使用的
 print(age)

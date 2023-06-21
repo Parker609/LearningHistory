@@ -91,7 +91,7 @@ echo $0 # 直接把脚本的绝对路径弄出来了
 echo $1 # 可以运行脚本看一看
 echo $*
 echo $@
-echo $?
+echo $? # 一般情况下，编号0是表示正常退出了
 echo $$
 
 # 场景环境变量 HOME PATH TERM PWD UID
