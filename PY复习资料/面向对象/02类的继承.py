@@ -92,4 +92,4 @@ print(dog.name) # 输出效果一样，意思是从self的父类队列里，找�
 super(Dog, dog).__init__('xxx')
 print(dog.name)
 
-# 注意，这块的dog必须是前边的那个类的实例
+# 注意，这块的dog须是前边的那个类的实例
