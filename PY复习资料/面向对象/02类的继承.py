@@ -93,3 +93,22 @@ super(Dog, dog).__init__('xxx')
 print(dog.name)
 
 # 注意，这块的dog须是前边的那个类的实例
+
+"""
+    Python的继承是支持多继承的，即一个子类可以有多个父类：
+        1. 语法：class A(B, C, D):
+        2. 看Python版本，高版本Python是宽度优先的，低版本是广度优先的
+"""
+
+class A:
+    def say():
+        print("this is A")
+
+class B(A):
+    def say():
+        print("this is B")
+class C(A):
+    def say():
+        print("this is C")
+
+
