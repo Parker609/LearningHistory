@@ -101,14 +101,84 @@ print(dog.name)
 """
 
 class A:
-    def say():
+    def __init__(self) -> None:
+        self.say()
+
+    def say(self):
+        print("this is A")
+
+class B:
+    def __init__(self) -> None:
+        self.say()
+        
+    def say(self):
+        print("this is B")
+
+class C:
+    name = ''
+    def __init__(self, name) -> None:
+        self.name = name
+        self.say()
+
+    def say(self):
+        print("this is C")
+
+class D(A, B, C):
+    pass
+
+# 在多继承时，如果子类没有构造函数，则直接继承第一个父类的构造函数；
+a = D()
+
+class E(A, B, C):
+    def __init__(self) -> None:
+        print("this is E")
+        # super 会调用第一个父类的构造函数，其余的构造函数就不调用了
+        super().__init__()
+e = E()
+print(e.name) # 构造函数没有处理，很可惜；
+# 总而言之，不建议使用多继承；代码的可读性太差了
+
+"""
+    Python 多继承，是有继承顺序的，最新的Python里是广度优先的，即：
+        B, C 都继承自A，D继承自B和C，那么会优先继承B和C的，在找A的；
+"""
+
+class A:
+    def say(self):
+        print("this is A")
+        
+    def say2(self):
+        print("this is A")
+
+    def say3(self):
         print("this is A")
 
 class B(A):
-    def say():
+    a = 100
+    def say(self):
         print("this is B")
+
 class C(A):
-    def say():
+    a = 200
+    def say(self):
         print("this is C")
 
+    def say2(self):
+        print("this is C")
 
+class D(B, C):
+    @property
+    def get_num(self):
+        # 这种写法相当于把C类中的a当成静态属性了
+        return C.a
+
+d = D()
+d.say() # 先执行B，因为B在前边
+d.say2()
+d.say3() # 一层一层的找，666
+
+C.a =3000
+c = C()
+print(c.a) # 不建议用静态属性；即类属性；
+
+print(d.get_num)
