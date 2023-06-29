@@ -1,6 +1,13 @@
 // ts是一个静态类型语言，相当于把js的动态类型静态化了
 // 类型赋予方法：let a:string = 'aaa'，以此方法来声明变量类型
 
+// 变量和函数都可以定义变量类型
+
+let a:string = '12';
+function foo3():string {
+    return '1231';
+}
+
 // 1. 字符串类型
 let str: string = 'hello';
 // str = 1; // 会报错
@@ -48,3 +55,51 @@ function foo():void {
 function foo2():never {
     throw new Error('报错了');
 }
+
+// 9. object，对象的类型一般不用object，一般是用于指定对象中包含的属性
+let obj: {name: string, age: number};
+obj = {name: 'zs', age: 13}; // 结构必须和后边的类型一样
+
+let obj2: {name: string, age: number, height?: number};
+obj2 = {name: 'zs', age: 13}; // ；属性名后边添加问号，表示属性是可选的；？表示属性是可选的，可选属性
+
+let obj3: {name: string, [prop: string]: any};
+obj3 = {name: 'zs', age: 13, height: 24, graduated: false}; // [prop: string]: any，后边可以添加任意的值；
+
+let foo4: (a: string, b: number) => string; // 使用箭头函数的方法来规定函数的格式；
+
+// 9. 数组，最好是数组中仅存储单一类型的值；
+let arr: string[];
+arr = ['1', '2'];
+
+let arr2 = Array<number>; // 效果差不多；
+
+// 10. 元组，就是固定长度的数组；
+let tp:[string, string];
+tp = ['1', '2'];
+
+// 11. enum，枚举
+enum gender {
+    Male,
+    Female
+};
+
+let gd: gender;
+gd = gender.Male;
+gd = gender.Female; // 都一样
+
+/**
+ * 关键字： |：表示一个变量可以同时是a类性，也可使是b类性；
+ *          &: 表示同时，用的比较少，常用在object中；
+ *          类型的别名： type，用于表示创建一个类型的别名；
+ */
+
+let abc: string | number;
+abc = 'zs';
+abc = 123; // 都可以
+
+// 类型的别名，简化类型的使用；
+type myType = string | number;
+let d: myType;
+d = 'sdd';
+d = 123123;
