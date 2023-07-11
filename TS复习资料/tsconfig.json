@@ -1,6 +1,70 @@
+// tsc xxx -w 表示监视文件变更
+// 在tsconfig.json文件存在的情况下，可以使用tsc -w 命令，自动编译该文件所在的大文件夹；
+// 本文件是ts编译器的配置文件，编译器可以根据本文件来配置编译；
+
+// 常用的如下；
 {
+  // 包含文件，用于记录指定需要编译的文件
+  "include": [
+    // 存放路径
+    // 两个** 表示任意目录，一个表示任意文件；
+    "./**/*"
+  ],
+  // 不包含某个文件，也是输入路径；
+  "exclude": [],
+  // 继承某个tsconfig.json文件；
+  // "extends": "",
+  // 需要编译的文件，和includes相似，不常用；
+  // "files": [],
+
+  // 编译器的选项；
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    // 指定编译js的版本，es版本；
+    "target": "es2016",
+
+    // 指定js模块化模板（import），引用模块的方法，es2015其实就是es6；
+    "module": "es2015",
+
+    // 指定项目中用到的库；一般不要改它，会改变默认值；如果在非浏览器环境下使用，没有默认的库，则需要填写，比方说document所使用的dom库，前端使用不要加，node环境使用时要加的；
+    // "lib": [],
+
+    // 编译后的文件放在哪里
+    "outDir": "./dist",
+
+    // 将编译后的代码合并为一个文件；不常用哦；
+    // "outFile": "",
+
+    // 是否允许js文件被编译过去；默认时false，即js文件不被编译；
+    "allowJs": true,
+
+    // 是否检查js代码语法错误；默认时false
+    "checkJs": true,
+
+    // 编译后是否保留注释；
+    "removeComments": true,
+
+    // 执行编译过程，不生成编译后的文件，默认false，不怎么用
+    // "noEmit": true,
+
+    // 报错后不编译生成文件，代码错误不编译，挺好的；
+    "noEmitOnError": true,
+
+    // 把所有的strict选线都设置成true；
+    "strict": false,
+
+    // 编译后的问文件是否开启js的严格模式
+    // "alwaysStrict": true,
+    
+    // 检查，拒绝隐式的any类型
+    "noImplicitAny": true,
+
+    // 不允许隐式的不明确类型的this；类型不明的this不大安全；
+    "noImplicitThis": true,
+
+    // 可能出现null的情景是否严格检查；
+    "strictNullChecks": true,
 
     /* Projects */
     // "incremental": true,                              /* 增量编译，只针对修改过的ts文件进行编译 */
@@ -11,7 +75,6 @@
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
 
     /* Language and Environment */
-    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
     // "experimentalDecorators": true,                   /* Enable experimental support for legacy experimental decorators. */
@@ -25,7 +88,6 @@
     // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
 
     /* Modules */
-    "module": "commonjs",                                /* Specify what module code is generated. */
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
     // "moduleResolution": "node10",                     /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
@@ -44,8 +106,6 @@
     // "noResolve": true,                                /* Disallow 'import's, 'require's or '<reference>'s from expanding the number of files TypeScript should add to a project. */
 
     /* JavaScript Support */
-    // "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
-    // "checkJs": true,                                  /* Enable error reporting in type-checked JavaScript files. */
     // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from 'node_modules'. Only applicable with 'allowJs'. */
 
     /* Emit */
@@ -56,8 +116,6 @@
     // "inlineSourceMap": true,                          /* Include sourcemap files inside the emitted JavaScript. */
     // "outFile": "./",                                  /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
     // "outDir": "./",                                   /* Specify an output folder for all emitted files. */
-    // "removeComments": true,                           /* Disable emitting comments. */
-    // "noEmit": true,                                   /* Disable emitting files from a compilation. */
     // "importHelpers": true,                            /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
     // "importsNotUsedAsValues": "remove",               /* Specify emit/checking behavior for imports that are only used for types. */
     // "downlevelIteration": true,                       /* Emit more compliant, but verbose and less performant JavaScript for iteration. */
@@ -68,7 +126,6 @@
     // "newLine": "crlf",                                /* Set the newline character for emitting files. */
     // "stripInternal": true,                            /* Disable emitting declarations that have '@internal' in their JSDoc comments. */
     // "noEmitHelpers": true,                            /* Disable generating custom helper functions like '__extends' in compiled output. */
-    // "noEmitOnError": true,                            /* Disable emitting files if any type checking errors are reported. */
     // "preserveConstEnums": true,                       /* Disable erasing 'const enum' declarations in generated code. */
     // "declarationDir": "./",                           /* Specify the output directory for generated declaration files. */
     // "preserveValueImports": true,                     /* Preserve unused imported values in the JavaScript output that would otherwise be removed. */
@@ -77,12 +134,11 @@
     // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */
     // "verbatimModuleSyntax": true,                     /* Do not transform or elide any imports or exports not marked as type-only, ensuring they are written in the output file's format based on the 'module' setting. */
     // "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    // "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
     // "preserveSymlinks": true,                         /* Disable resolving symlinks to their realpath. This correlates to the same flag in node. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    // "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
 
     /* Type Checking */
-    "strict": true,                                      /* Enable all strict type-checking options. */
     // "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     // "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
     // "strictFunctionTypes": true,                      /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */
@@ -104,6 +160,6 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    // "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   }
 }
