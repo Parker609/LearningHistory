@@ -102,4 +102,4 @@ abc = 123; // 都可以
 type myType = string | number;
 let d: myType;
 d = 'sdd';
-d = 123123;
+d = 1231233;
