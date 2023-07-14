@@ -21,7 +21,7 @@ module.exports = {
         rules: [
             {
                 // test指定规则生效文件
-                test: /\.ts/, // 正则表达式表示对哪些文件生效
+                test: /\.ts/, // 正则表达式表示对哪些文件生效，这个正则不知道是否是js的正则
                 // 使用ts-loader去处理
                 use: 'te-loader',
                 // 要排除的文件，即不处理的文件
