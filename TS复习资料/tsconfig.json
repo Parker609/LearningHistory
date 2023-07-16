@@ -11,7 +11,7 @@
     "./**/*"
   ],
   // 不包含某个文件，也是输入路径；
-  "exclude": [],
+  "exclude": ["./webpack.config.js"],
   // 继承某个tsconfig.json文件；
   // "extends": "",
   // 需要编译的文件，和includes相似，不常用；
