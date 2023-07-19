@@ -65,6 +65,7 @@ module.exports = {
         // 自动创建新的plugin，可以有参数，如title，或者可以使用tempalte作为模板；
         new HTMLWebPlagin({
             title: '这是个页面title'
+            // 这个地方可以使用template字段，直接拿某个模板
         }),
     ],
 
