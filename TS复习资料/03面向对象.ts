@@ -43,3 +43,28 @@ per.sayHello();
 Person.sayHello2();
 
 // 继承
+
+// 定义一个Ani的类
+class Ani{
+    name: string;
+    age: number;
+
+    constructor(name:string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    sayHello() {
+        console.log('sayHello');
+    }
+}
+
+// 继承关键字：extends，和js基本一样
+// 面相对象的原理已经看了好多遍呢了，就不追书了
+class Dog extends Ani{
+
+}
+
+// 直接执行了父类的初始化方法，在python中是不执行的；
+const dog = new Dog('zs', 22);
+console.log(dog.name)
