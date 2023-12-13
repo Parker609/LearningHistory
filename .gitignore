@@ -1,3 +1,5 @@
 /TS复习资料/node_modules
 /TS复习资料/package-lock.json
 /TS复习资料/dist
+/ND复习资料/*/node_modules
+/ND复习资料/node_modules
