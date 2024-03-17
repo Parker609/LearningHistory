@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+</head>
+<body>
+    <!-- 准备好一个容器，用于挂载react组件 -->
+    <div id="app"></div>
+    
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../reactJS/17.0/react.development17.0.js"></script>
+    <!-- 引入dom操作库 -->
+    <script type="text/javascript" src="../reactJS/17.0/react-dom.development17.0.js"></script>
+    <!-- 引入babel，babel除了将es6 ==> es5以外，还可以将jsx ==> js -->
+    <script type="text/javascript" src="../reactJS/babel.min.js"></script>
+
+    <!-- 书写react渲染代码，必须使用babel，而不是js -->
+    <script type="text/babel">
+        // 1. 创建类型组件，需要继承react中的类；
+        class Demo extends React.Component {
+            state = {
+                count: 0
+            }
+            // render使用时机：刚刚创建时使用、状态更新时使用；
+            render(h) {
+                console.log('组件挂载或者被更新了-- render')
+                return (
+                    <div>
+                        <h2 onClick={this.update}>{this.state.count}使用类定义的组件，适用于定义复杂组件</h2>    
+                        <button onClick={this.fUpdate}>强制更新</button>
+                    </div>
+                )
+            }
+
+            // 标识，是否可以update页面；
+            // 默认返回true；
+            shouldComponentUpdate() {
+                return true;
+            }
+
+            // componentWillReceiveProps(props) {
+            //     // 相当于watch immediate：false；第一次接收不执行，可以接收props参数；
+            //     // 接收新的props执行；
+            //     console.log('父组件传值发生变化的话，执行钩子 -- receiveProps')
+            // }
+
+            // 组件即将更新，beforeUpdate
+            // componentWillUpdate() {
+            //     console.log('组件即将更新 -- willUpdate')
+            // }
+
+            // 组件完成更新，updated
+            componentDidUpdate(beforeProps, beforeState, preshot) {
+                console.log(beforeProps, beforeState, preshot, '组件已经更新 -- didUpdate')
+            }
+
+            update = () => {
+                this.setState({count: this.state.count + 1})
+            }
+
+            // 通过forceUpdate()方法，可以忽略阀门，直接更新页面，并触发更新后的生命周期钩子
+            fUpdate = () => {
+                this.forceUpdate()
+            }
+
+            // 组件即将被挂载时调用
+            // componentWillMount() {
+            //     console.log('组件即将被挂载 -- willMount')
+            // }
+
+            // 组件挂载时触发的函数；
+            componentDidMount() {
+                console.log('组件被挂载了 -- didmount')
+            }
+
+            // 组件卸载之前调用函数：
+            componentWillUnmount() {
+                console.log('组件即将被卸载 -- willunmount')
+            }
+
+            unMoundte = () => {
+                // 卸载组件；
+                React.unmountComponentAtNode(document.querySelector('#app'))
+            }
+
+            // 类的静态方法，返回状态对象;
+            // 获取props，并将其作为状态赋值；状态值可以永远取自于props；
+            // 使用场景非常少，若state值都取自于props，则可以使用；了解即可；
+            static getDerivedStateFromProps(props, state) {
+                console.log(props, state, '新版本react生命周期 -- getDerivedStateFromProps')
+                return null;
+            }
+
+            // 处于render和updated之间；
+            // 更新之前的快照；可以将快照值直接传给update方法；
+            getSnapshotBeforeUpdate() {
+                console.log('更新之前获取快照 -- getSnapShotBeforeUpdate')
+                return null;
+            }
+        }
+
+        // 2. 渲染dom到页面，使用ReactDom全局对象；
+        ReactDOM.render(<Demo/>, document.querySelector('#app'));
+
+        /*
+            1. 三个will钩子即将被废弃；
+            2. 多了一个初始化派生方法和更新之前获取快照；
+            3. 初始化派生方法确实不常见，是把props直接传给state才用的，可以通过construt实现大部分功能；
+            4. 获取快照方法也基本不常用，不过可以把更新之前的值传递回来，便于获取之前的值；
+        */
+    </script>
+</body>
+</html>
