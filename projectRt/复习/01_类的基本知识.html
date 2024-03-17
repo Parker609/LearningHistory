@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 创建一个类
+        class Ani {
+            // 构造方法
+            name = 0
+            age = 12
+            constructor(name, age) {
+                // this指的是类的实例对象；
+                this.name = name;
+                this.age = age;
+            }
+            // 一般方法，放在了类的原型对象上，供实例对象使用；
+            talk() {
+                console.log('talk');
+            }
+        }
+
+        class Dog extends Ani {
+            constructor(male, name, age) {
+                super(name, age)
+                this.male = male;
+            }
+        }
+
+        let dog = new Ani('tom', 12);
+        console.log(dog.name)
+
+        console.dir(Ani)
+        console.dir(dog)
+
+        let dog2 = new Dog(1, 'jerry', 29);
+        console.log(dog2)
+    </script>
+</body>
+</html>

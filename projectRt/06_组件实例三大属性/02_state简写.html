@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+</head>
+<body>
+    <!-- 准备好一个容器，用于挂载react组件 -->
+    <div id="app"></div>
+    
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../reactJS/react.development.js"></script>
+    <!-- 引入dom操作库 -->
+    <script type="text/javascript" src="../reactJS/react-dom.development.js"></script>
+    <!-- 引入babel，babel除了将es6 ==> es5以外，还可以将jsx ==> js -->
+    <script type="text/javascript" src="../reactJS/babel.min.js"></script>
+
+    <!-- 书写react渲染代码，必须使用babel，而不是js -->
+    <script type="text/babel">
+        class A {
+            f = function() {
+                console.log(this)
+            }
+
+            d = () => {
+                console.log(this)
+            }
+        }
+
+        const a = new A();
+        a.f()
+        a.d()
+
+        const x = a.f;
+        x();
+        const y = a.d;
+        y(); // 类里边箭头函数的this永远指向实例对象；
+        const z = () => {console.log(this)}
+        z();
+
+        // 由上可知，箭头函数是先定好this指向，而普通函数，this是会随着调用者的不同而不同的；
+        // 因此，在创建组件过程中，是可以优化的；
+        // 1. 创建组件；
+        class Weather extends React.Component {
+            // state是可以写在外边的：
+            state = {isHot: true}
+
+            constructor(props) {
+                super(props);
+            }
+
+            // 调用1+n次，1为初始化调用一次，n为更新的次数；
+            render() {
+                // 在jsX上绑定方法，要使用onX大写；
+                // 这样绑定是不对的，因为此时weather方法，并不是weather实例调用的，而是作为onclick的回调调用的；
+                // this指向undefined；
+                return <h2 onClick={this.changeWeather}>今天的天气很{`${this.state.isHot ? '炎热' : '凉爽'}`}</h2>
+            }
+
+            // 通过类中箭头函数的表现，可以使用箭头函数来定义；
+            changeWeather = () => {
+                this.setState({isHot: !this.state.isHot})
+            }
+        }
+        // 2. 渲染dom到页面，使用ReactDom全局对象；
+        ReactDOM.render(<Weather/>, document.querySelector('#app'));
+    </script>
+</body>
+</html>
