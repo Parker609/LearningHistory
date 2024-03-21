@@ -1,0 +1,32 @@
+.item-wrapper {
+    height: 36px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    justify-content: space-between;
+}
+
+.btns {
+    display: flex;
+}
+
+.finish,
+.del {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    margin-left: 3px;
+}
+
+.finish {
+    background-color: skyblue;
+}
+
+.del {
+    background-color: #fd503e;
+}
+
+.light {
+    background-color: skyblue;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello react</title>
+</head>
+<body>
+    <!-- 准备好一个容器，用于挂载react组件 -->
+    <div id="app"></div>
+    
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../reactJS/react.development.js"></script>
+    <!-- 引入dom操作库 -->
+    <script type="text/javascript" src="../reactJS/react-dom.development.js"></script>
+    <!-- 引入babel，babel除了将es6 ==> es5以外，还可以将jsx ==> js -->
+    <script type="text/javascript" src="../reactJS/babel.min.js"></script>
+
+    <!-- 书写react渲染代码，必须使用babel，而不是js -->
+    <script type="text/babel">
+        // 1. 创建类型组件，需要继承react中的类；
+        class Demo extends React.Component {
+            // 必须有render方法
+            render(h) {
+                return <h2>使用类定义的组件，适用于定义复杂组件</h2>
+            }
+        }
+        // 2. 渲染dom到页面，使用ReactDom全局对象；
+
+        ReactDOM.render(<Demo/>, document.querySelector('#app'));
+
+        /*
+            这边再强调一下diff算法中，为什么不要用index作为key来渲染页面；
+            1. 简单来讲，key是作为虚拟对象的标识，在diff算法中，会通过key值来判断是否生成新的dom以及dom对比；
+                a. 当数据变化，生成新的虚拟dom后，会寻找之前的相同key值的dom进行比较，再更新不同的子节点，保留相同的子节点。
+                b. 若新生成的虚拟dom，并没有相同的key值，那么其他的不变，直接生成新的dom；
+            2. 可能会发生的问题：
+                a. 效率问题：破坏了整体的排序，如：从第一个位置插入元素，造成了整体虚拟dom的更新；
+                b. 展示问题：逆序添加，相同的key里边都有input，那么老的input无法替换；尤其是输入类的dom；
+            3. 如何选择key：
+                尽量选择数据的唯一标识；
+                如果是简单展示，无逆序场景，那么也可以使用index值；
+        */
+    </script>
+</body>
+</html>
