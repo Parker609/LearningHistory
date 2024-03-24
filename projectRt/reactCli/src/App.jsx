@@ -1,49 +1,19 @@
 // 创建app
 import React, {Component} from "react";
-// import应用的组件
-import Header from "./components/Header";
-import Container from "./components/Container";
 
 // 创建并暴露app
 export default class App extends Component {
-    state = {
-        todos: [
-            {id: 0, todo: '吃饭', isDone: true},
-            {id: 1, todo: '刷牙', isDone: false},
-            {id: 2, todo: '睡觉', isDone: false}
-        ]
-    }
-    finish = (id) => {
-        const newTodos = this.state.todos.map(item => {
-            return {
-                ...item,
-                isDone: item.isDone || +item.id === +id
-            }
-        });
-        this.setState({todos: newTodos})
-    }
-    del = (id) => {
-        const newTodos = this.state.todos.filter(item => {
-            return item.id !== id;
-        });
-        this.setState({todos: newTodos})
-    }
-    addIntoTodos = (val) => {
-        const {todos} = this.state;
-        todos.unshift({
-            id: Date.now(),
-            todo: val,
-            isDone: false
-        });
-        this.setState({todos})
-    }
-    render(h) {
-        const {todos} = this.state;
+    render() {
         return (
             <div>
-                <Header addIntoTodos={this.addIntoTodos}></Header>
-                <Container todos={todos} finish={this.finish} del={this.del}></Container>
+                123
             </div>
         )
     }
 }
+
+/**
+ * 接下来讲解前端路由
+ * 前端路由其实是依赖于BOM上的History对象来操作的，包括pushState和history的listen事件。
+ * 相对于history的控制，hash的兼容性会更好，因为部分老的浏览器不支持用户手动修改history。
+ */
