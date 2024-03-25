@@ -1,6 +1,6 @@
 // 创建app
 import React, {Component} from "react";
-import {BrowserRouter, Route, Switch} from 'react-router-dom'; // 引入路由组件
+import {BrowserRouter, Route} from 'react-router-dom'; // 引入路由组件
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Idx from "./components/Idx";
@@ -16,19 +16,9 @@ export default class App extends Component {
                     <Idx to="home">Home</Idx>
                     <Idx to="About" children="About"></Idx>
                 <div>
-                    {/* 当存在多个路由能匹配时，是会都展示的 */}
+                    {/* 注册路由，使用Route切换页面，作为参数传入route的组件被称作路由组件 */}
                     <Route path="/home" component={Home}></Route>
                     <Route path="/about" component={About}></Route>
-                    <Route path="/about" component={Home}></Route>
-                </div>
-                <hr />
-                <div>
-                    {/* 若使用switch包裹，则只会渲染前一个 */}
-                    <Switch>
-                        <Route path="/home" component={Home}></Route>
-                        <Route path="/about" component={About}></Route>
-                        <Route path="/about" component={Home}></Route>
-                    </Switch>
                 </div>
                 </BrowserRouter>
             </div>
