@@ -1,12 +1,11 @@
 // 创建app
 import React, {Component} from "react";
-import {BrowserRouter, Route, Redirect} from 'react-router-dom'; // 引入路由组件
+import {BrowserRouter, Route, Switch} from 'react-router-dom'; // 引入路由组件
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Idx from "./components/Idx";
 
 // 创建并暴露app
-// 目前怀疑路由的是需要基于服务器，如果服务器不支持模糊匹配，那么页面的第一次出现就会有问题；
 export default class App extends Component {
     render() {
         return (
@@ -14,16 +13,14 @@ export default class App extends Component {
             <div className="link-bar">
                 <BrowserRouter>
                     {/* 路由的索引，导航区，编译之后直接成a标签 */}
-                    {/* 模糊匹配，底层依赖是node返回多级路径时，如果没找到文件，则直接返回底层目录的index.html文件 */}
-                    <Idx to="/home/h">Home</Idx>
+                    <Idx to="/home/test">Home</Idx>
                     {/* 模糊匹配，是可以匹配上的，默认模糊匹配 */}
-                    <Idx to="/about" children="About"></Idx>
+                    <Idx to="/About/test" children="About"></Idx>
                 <div>
                     {/* 当存在多个路由能匹配时，是会都展示的 */}
                     <Route path="/home" component={Home}></Route>
-                    <Route path="/about" component={About}></Route>
-                    {/* 路由都没有匹配上，则redirect指向默认指向的地址 */}
-                    <Redirect to="/about"/>
+                    {/* exact，精确匹配 */}
+                    <Route exact path="/about" component={About}></Route>
                 </div>
                 <hr />
                 </BrowserRouter>
