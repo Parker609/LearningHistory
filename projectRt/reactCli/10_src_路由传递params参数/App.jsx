@@ -15,21 +15,14 @@ export default class App extends Component {
             // NavLink在激活的时候，会自动加上activeClassName传入的class属性；比link要高级一些；
             <div className="link-bar">
                 <BrowserRouter>
-                    {/* 路由的索引，导航区，编译之后直接成a标签 */}
-                    {/* 通过state传递参数，to传递的将不是字符串，而是对象 */}
-                    <Idx to={{
-                                pathName: '/home',
-                                state: {
-                                    a: '11',
-                                    b: 'test'
-                                }
-                            }}>Home</Idx>
+                    {/* 通过params来传递参数 */}
+                    <Idx to={`/home/${a}/${b}`}>Home</Idx>
                     {/* 模糊匹配，是可以匹配上的，默认模糊匹配 */}
                     <Idx to="/about" children="About"></Idx>
                 <div>
                     {/* 当存在多个路由能匹配时，是会都展示的 */}
                     {/* 通过:a的样式来接收params参数 */}
-                    <Route path="/home" component={Home}></Route>
+                    <Route path="/home/:a/:b" component={Home}></Route>
                     <Route path="/about" component={About}></Route>
                     {/* 路由都没有匹配上，则redirect指向默认指向的地址 */}
                     <Redirect to="/home"/>
