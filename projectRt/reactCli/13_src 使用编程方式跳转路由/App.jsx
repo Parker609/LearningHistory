@@ -9,8 +9,7 @@ import Idx from "./components/Idx";
 // 目前怀疑路由的是需要基于服务器，如果服务器不支持模糊匹配，那么页面的第一次出现就会有问题；
 export default class App extends Component {
     render() {
-        const a = 'a';
-        const b = 'b';
+        console.log(this.props)
         return (
             // NavLink在激活的时候，会自动加上activeClassName传入的class属性；比link要高级一些；
             <div className="link-bar">
@@ -25,7 +24,8 @@ export default class App extends Component {
                                 }
                             }}>Home</Idx>
                     {/* 模糊匹配，是可以匹配上的，默认模糊匹配 */}
-                    <Idx to="/about" children="About"></Idx>
+                    {/* replace标识replace压栈 */}
+                    <Idx replace to="/about" children="About"></Idx>
                 <div>
                     {/* 当存在多个路由能匹配时，是会都展示的 */}
                     {/* 通过:a的样式来接收params参数 */}
@@ -36,6 +36,9 @@ export default class App extends Component {
                 </div>
                 <hr />
                 </BrowserRouter>
+
+                {/* 直接写一段代码来跳转页面，不用link组件，而是通过一段代码来实现 */}
+
             </div>
         )
     }

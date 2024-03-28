@@ -25,3 +25,7 @@ export default class About extends Component {
     )
   }
 }
+
+/**
+ * 除此以外，history里边还有go、goForward、goBack等方法，可以调用浏览历史；
+ */
