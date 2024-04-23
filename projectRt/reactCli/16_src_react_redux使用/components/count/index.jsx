@@ -20,8 +20,7 @@ class Count extends Component {
 }
 
 export default connect(
-    // 若是使用combineReducers，则state中管理的数据和reducer的key一一对应；
-    state => ({cnt: state.cnt}),
+    state => ({cnt: state}),
     {
         increase: countActionIncrease
     }
