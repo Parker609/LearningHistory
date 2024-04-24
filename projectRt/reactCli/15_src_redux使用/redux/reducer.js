@@ -8,6 +8,7 @@ export default function countReducer (preState, action) {
     const {type, data} = action;
     switch(type) {
         case INCREASEMENT:
+        // 若return和prestate相等，则不触发store的sub方法；仅作浅层的比较；
             return preState + data;
         // default场景表示第一次获取，毕竟没有任何操作的情况下，那就是默认值了；
         default:
