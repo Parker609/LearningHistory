@@ -49,3 +49,5 @@ esac # 标识case结束
 # pattern其实是一种正则表达式，可以使用[0~9]之类的来表示
 
 # 参考网址：https://blog.csdn.net/oqqHuTu12345678/article/details/125662997
+
+# 我才发现，流程控制中间其实是if和fi，单词反过来了，case同理是esac
